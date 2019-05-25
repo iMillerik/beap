@@ -29,7 +29,7 @@ export default {
 			/* Push base64 to address bar
 			/* === === === === === */
 
-			this.$router.push({path: '/', query: {
+			this.$router.push({query: {
 				text: encoded
 			}});
 
