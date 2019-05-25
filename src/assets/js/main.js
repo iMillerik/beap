@@ -38,7 +38,7 @@ export default {
 			/* Push base64 to address bar
 			/* === === === === === */
 
-			this.$router.push({query: {
+			this.$router.replace({query: {
 				text: this.encoded
 			}});
 
@@ -78,7 +78,9 @@ export default {
 }
 
 function download(filename, encoded) {
+
 	let element = document.createElement('a');
+
 	element.setAttribute('href', 'data:text/plain;charset=utf-8;base64,' + encodeURIComponent(encoded));
 	element.setAttribute('download', filename);
 
