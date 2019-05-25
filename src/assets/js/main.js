@@ -13,26 +13,43 @@ export default {
 	},
 
 	/* === === === === === */
+	/* Computed
+	/* === === === === === */
+
+	computed: {
+		encoded() {
+			return Base64.encode(this.text)
+		}
+	},
+
+	/* === === === === === */
 	/* Methods
 	/* === === === === === */
 
 	methods: {
-		encode() {
 
-			/* === === === === === */
-			/* Encode text
-			/* === === === === === */
-			
-			let encoded = Base64.encode(this.text);
+		/* === === === === === */
+		/* Push to URL
+		/* === === === === === */
+
+		pushToURL() {
 
 			/* === === === === === */
 			/* Push base64 to address bar
 			/* === === === === === */
 
 			this.$router.push({query: {
-				text: encoded
+				text: this.encoded
 			}});
 
+		},
+
+		/* === === === === === */
+		/* Save as a file
+		/* === === === === === */
+
+		saveAsFile() {
+			download('beap-text.txt', this.encoded);
 		}
 	},
 
@@ -58,4 +75,17 @@ export default {
 
 	}
 
+}
+
+function download(filename, encoded) {
+	let element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8;base64,' + encodeURIComponent(encoded));
+	element.setAttribute('download', filename);
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
 }

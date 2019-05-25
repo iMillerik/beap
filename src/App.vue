@@ -1,7 +1,7 @@
 <template lang="pug">
 	
 	#app
-		textarea(placeholder="Enter any text and then copy URL and then share it with friends", autofocus, autocomplete="off", v-model="text", @input="encode")
+		textarea(placeholder="Enter any text and then copy URL and then share it with friends. Press CTRL+Enter to download your text as file", autofocus, autocomplete="off", v-model="text", @input="pushToURL", @keyup.ctrl.13="saveAsFile")
 
 </template>
 
